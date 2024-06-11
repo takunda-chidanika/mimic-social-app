@@ -7,4 +7,9 @@ export * from "./lib/models/auth/register-request";
 export * from "./lib/models/users/user";
 export * from "./lib/models/users/user-create";
 export * from "./lib/models/users/user-update";
-export * from "./lib/services/users/users.service"
+export * from "./lib/services/users/users.service";
+export * from "./lib/services/posts/posts.service";
+export * from "./lib/models/posts/post-with-votes";
+export * from "./lib/models/posts/post-create";
+export * from "./lib/models/posts/post-update";
+export * from "./lib/models/posts/post";

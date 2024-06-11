@@ -10,5 +10,8 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'users', loadChildren: () => import('./users/users.routes').then(r => r.usersRoutes)
+  },
+  {
+    path: 'posts', loadChildren: () => import('./posts/posts.routes').then(r => r.postsRoutes)
   }
 ];

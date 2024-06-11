@@ -1,0 +1,24 @@
+<h3>Posts</h3>
+<table border="2">
+  <thead>
+  <td>Id</td>
+  <td>Title</td>
+  <td>Content</td>
+  <td>Votes</td>
+  <td>Down Vote</td>
+  <td>Up Vote</td>
+
+  </thead>
+  <tbody>
+  @for(post of posts; track $index){
+    <tr>
+      <td>{{post.id}}</td>
+      <td>{{post.title}}</td>
+      <td>{{post.content}}</td>
+      <td>{{post.votes}}</td>
+      <td><app-post-down-vote [postId]="post.id"></app-post-down-vote></td>
+      <td><app-post-up-vote [postId]="post.id"></app-post-up-vote></td>
+    </tr>
+  }
+  </tbody>
+</table>

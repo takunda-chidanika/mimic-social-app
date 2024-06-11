@@ -12,7 +12,7 @@ import { PostUpdate } from '../../models/posts/post-update';
 })
 export class PostsService {
   protected http = inject(HttpClient);
-  protected POSTS_BASE_URL = BASE_URL + '/posts';
+  protected POSTS_BASE_URL = BASE_URL + 'posts';
 
 //   Get All Posts
   getAllPosts(): Observable<PostWithVotes[]> {
@@ -31,7 +31,7 @@ export class PostsService {
 
   // Update A Post
   updateAPost(data: PostUpdate): Observable<Post> {
-    return this.http.put<Post>(this.POSTS_BASE_URL, data);
+    return this.http.put<Post>(this.POSTS_BASE_URL+"/"+data.id, data);
   }
 
 //   Delete A Post
