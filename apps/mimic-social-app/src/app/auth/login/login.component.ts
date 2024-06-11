@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AuthService, LoginRequest, Token } from '@mimic-social-org/shared';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { error } from '@angular/compiler-cli/src/transformers/util';
 
 @Component({
   selector: 'app-login',
@@ -16,26 +15,26 @@ import { error } from '@angular/compiler-cli/src/transformers/util';
 export class LoginComponent {
   protected authService = inject(AuthService);
   protected loginRequest: LoginRequest = { username: '', password: '' };
-  protected token: Token|undefined;
+  protected token: Token | undefined;
 
   protected loginForm = new FormGroup({
-    username:new FormControl(''),
-    password:new FormControl(''),
-  })
+    username: new FormControl(''),
+    password: new FormControl('')
+  });
 
-  handleLogin(){
-    this.loginRequest.username = this.loginForm.value.username??"";
-    this.loginRequest.password = this.loginForm.value.password??"";
+  handleLogin() {
+    this.loginRequest.username = this.loginForm.value.username ?? '';
+    this.loginRequest.password = this.loginForm.value.password ?? '';
 
     this.authService.login(this.loginRequest).subscribe(
-      token=> {
+      token => {
         this.token = token;
-        localStorage.setItem("access_token", token.access_token)
+        localStorage.setItem('access_token', token.access_token);
       },
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
 }
