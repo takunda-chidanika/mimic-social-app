@@ -25,7 +25,7 @@ export class UsersService {
 
 //   Get A User
   getAUser(username: string): Observable<User> {
-    return this.http.get<User>(this.USER_BASE_URL + username);
+    return this.http.get<User>(this.USER_BASE_URL +"/"+ username);
   }
 
 //   Update A User
@@ -35,6 +35,6 @@ export class UsersService {
 
   // Delete A User
   deleteAUser(username: string): Observable<string> {
-    return this.http.delete<string>(this.USER_BASE_URL + username);
+    return this.http.delete<string>(this.USER_BASE_URL +"/"+ username);
   }
 }
