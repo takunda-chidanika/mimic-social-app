@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mimic-social-org/shared": ["libs/shared/src/index.ts"],
+      "@mimic-social-org/shared-api": ["libs/shared/api/src/index.ts"],
+      "@mimic-social-org/shared-ui": ["libs/shared/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
