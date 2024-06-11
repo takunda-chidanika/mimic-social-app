@@ -11,7 +11,7 @@ import { UserUpdate } from '../../models/users/user-update';
 })
 export class UsersService {
   protected http = inject(HttpClient);
-  protected USER_BASE_URL = BASE_URL + '/user';
+  protected USER_BASE_URL = BASE_URL + 'users';
 
 //   Get All Users
   getAllUsers(): Observable<User[]> {
@@ -30,7 +30,7 @@ export class UsersService {
 
 //   Update A User
   updateAUser(data: UserUpdate): Observable<User> {
-    return this.http.post<User>(this.USER_BASE_URL, data);
+    return this.http.put<User>(this.USER_BASE_URL+"/"+data.oldUsername, data);
   }
 
   // Delete A User

@@ -1,8 +1,12 @@
-<p>Login</p>
-<form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+<p>Create User</p>
+<form [formGroup]="userCreateForm" (ngSubmit)="createANewUser()">
   <label>
     Username:
     <input type="text" formControlName="username">
+  </label>
+  <label>
+    Email:
+    <input type="email" formControlName="email">
   </label>
   <label>
     Password:
@@ -11,5 +15,6 @@
   <button type="submit">Submit</button>
 </form>
 <div>
-  <h4>{{token?.access_token}}</h4>
+  <h4>{{user?.username}}</h4>
+  <h4>{{user?.email}}</h4>
 </div>

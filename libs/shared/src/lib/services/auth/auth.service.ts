@@ -5,6 +5,7 @@ import { Token } from '../../models/auth/token';
 import { BASE_URL } from '../index';
 import { LoginRequest } from '../../models/auth/login-request';
 import { RegisterRequest } from '../../models/auth/register-request';
+import { User } from '../../models/users/user';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class AuthService {
   }
 
   // Register
-  register(data: RegisterRequest): Observable<string> {
-    return this.http.post<string>(this.AUTH_BASE_URL + '/register', data);
+  register(data: RegisterRequest): Observable<User> {
+    return this.http.post<User>(this.AUTH_BASE_URL + '/register', data);
   }
 }

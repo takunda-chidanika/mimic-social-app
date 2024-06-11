@@ -1,5 +1,9 @@
-<p>Login</p>
-<form [formGroup]="registerForm" (ngSubmit)="handleRegister()">
+<p>Update User</p>
+<form [formGroup]="userUpdateForm" (ngSubmit)="updateAUser()">
+  <label>
+    Old Username:
+    <input type="text" formControlName="oldUsername">
+  </label>
   <label>
     Username:
     <input type="text" formControlName="username">

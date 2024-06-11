@@ -1,6 +1,6 @@
 export interface UserUpdate {
-  id:number;
-  username: string;
-  email: string;
-  password:string
+  oldUsername: string;
+  username: string | null;
+  email: string| null;
+  password:string | null;
 }

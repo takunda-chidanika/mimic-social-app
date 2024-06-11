@@ -1,0 +1,11 @@
+<p>Delete A User</p>
+<form [formGroup]="userDeleteForm" (ngSubmit)="deleteAUser()">
+  <label>
+    Username:
+    <input type="text" formControlName="username">
+  </label>
+  <button type="submit">Submit</button>
+</form>
+<div>
+  <h4>{{this.message}}</h4>
+</div>
