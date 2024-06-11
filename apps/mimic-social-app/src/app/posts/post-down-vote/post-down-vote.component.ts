@@ -9,7 +9,7 @@ import { PostsService, PostWithVotes } from '@mimic-social-org/shared';
   styleUrl: './post-down-vote.component.css'
 })
 export class PostDownVoteComponent {
-  @Input() postId: number = 0;
+  @Input() postId = 0;
   protected postService = inject(PostsService);
   protected post:PostWithVotes | undefined;
 

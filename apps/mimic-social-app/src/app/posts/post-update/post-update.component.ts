@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Post, PostCreate, PostsService, PostUpdate } from '@mimic-social-org/shared';
+import { Post, PostsService, PostUpdate } from '@mimic-social-org/shared';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class PostUpdateComponent {
   protected postService = inject(PostsService);
-  protected postUpdateRequest: PostUpdate = {id:0, title: '', content: '', published: false };
+  protected postUpdateRequest: PostUpdate = { id: 0, title: '', content: '', published: false };
   protected post: Post | undefined;
 
   protected postUpdateForm = new FormGroup({
