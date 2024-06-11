@@ -11,6 +11,7 @@ import { RegisterRequest } from '../../models/auth/register-request';
 })
 export class AuthService {
   protected http = inject(HttpClient);
+  protected AUTH_BASE_URL = BASE_URL + 'auth';
 
   // login
   login(request: LoginRequest): Observable<Token> {
@@ -22,11 +23,11 @@ export class AuthService {
     data.append('client_id', '' ?? null);
     data.append('client_secret', '' ?? null);
 
-    return this.http.post<Token>(BASE_URL + '/login', data);
+    return this.http.post<Token>(this.AUTH_BASE_URL+'/login', data);
   }
 
   // Register
   register(data: RegisterRequest): Observable<string> {
-    return this.http.post<string>(BASE_URL + '/register', data);
+    return this.http.post<string>(this.AUTH_BASE_URL + '/register', data);
   }
 }
