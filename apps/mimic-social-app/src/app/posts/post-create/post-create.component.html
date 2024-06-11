@@ -1,21 +1,77 @@
-<p>Create Post</p>
-<form [formGroup]="postCreateForm" (ngSubmit)="createANewPost()">
-  <label>
-    Title:
-    <input type="text" formControlName="title">
-  </label>
-  <label>
-    Content:
-    <input type="text" formControlName="content">
-  </label>
-  <label>
-    Password:
-    <input type="checkbox" formControlName="published">
-  </label>
-  <button type="submit">Submit</button>
-</form>
-<div>
-  <h4>{{post?.title}}</h4>
-  <h4>{{post?.content}}</h4>
-  <h4>{{post?.published}}</h4>
-</div>
+<main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+
+  <div class="max-w-3xl mx-auto">
+
+
+    <div class="box relative rounded-lg shadow-md">
+
+      <!-- nav tabs -->
+      <div class="relative border-b" tabindex="-1" uk-slider="finite: true">
+
+        <nav class="uk-slider-container overflow-hidden nav__underline px-6 p-0 border-transparent -mb-px">
+
+          <ul class="uk-slider-items w-[calc(100%+10px)] !overflow-hidden"
+              uk-switcher="connect: #setting_tab ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium">
+
+            <li class="w-auto pr-2.5"> <a href="#"> Save Post</a> </li>
+
+
+          </ul>
+
+        </nav>
+
+        <a class="absolute -translate-y-1/2 top-1/2 left-0 flex items-center w-20 h-full p-2 py-1 justify-start bg-gradient-to-r from-white via-white dark:from-slate-800 dark:via-slate-800" href="#" uk-slider-item="previous"> <ion-icon name="chevron-back" class="text-2xl ml-1"></ion-icon> </a>
+        <a class="absolute right-0 -translate-y-1/2 top-1/2 flex items-center w-20 h-full p-2 py-1 justify-end bg-gradient-to-l from-white via-white dark:from-slate-800 dark:via-slate-800" href="#" uk-slider-item="next">  <ion-icon name="chevron-forward" class="text-2xl mr-1"></ion-icon> </a>
+
+      </div>
+
+
+      <div id="setting_tab" class="uk-switcher md:py-12 md:px-20 p-6 overflow-hidden text-black text-sm">
+
+        <!-- tab socialinks -->
+        <div>
+
+          <form [formGroup]="postCreateForm" (ngSubmit)="createANewPost()" class="space-y-7 text-sm text-black font-medium dark:text-white"  uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true">
+
+            <!-- title -->
+            <div>
+              <label for="title" class="">Title</label>
+              <div class="mt-2.5">
+                <input id="title" formControlName="title" name="title" type="text" autofocus=""  placeholder="Title" required="required" class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
+              </div>
+            </div>
+            <!-- content -->
+            <div>
+              <label for="content" class="">Content</label>
+              <div class="mt-2.5">
+                <textarea id="content" formControlName="content" name="content" type="text" placeholder="Content" required="required"  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"></textarea>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+
+              <div class="flex items-center gap-2.5">
+                <input id="published" formControlName="published" name="published" type="checkbox">
+                <label for="published" class="font-normal">Published</label>
+              </div>
+            </div>
+
+            <!-- submit button -->
+            <div>
+              <button type="submit" class="button bg-primary text-white w-full">Save</button>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</main>
+
+

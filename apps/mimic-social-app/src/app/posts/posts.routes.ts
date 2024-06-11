@@ -7,13 +7,22 @@ export const postsRoutes: Routes = [
     children: [
       {
         path: '', redirectTo: '', pathMatch: 'full'
-      }, {
+      },
+      {
         path: '',
+        loadComponent: () => import('./feed-posts/feed-posts.component').then(c => c.FeedPostsComponent),
+      },
+      {
+        path: 'posts',
         loadComponent: () => import('./posts/posts.component').then(c => c.PostsComponent),
       },
       {
         path:'delete',
         loadComponent:()=> import("./post-delete/post-delete.component").then(c=> c.PostDeleteComponent),
+      },
+      {
+        path:'mine',
+        loadComponent:()=> import("./my-posts/my-posts.component").then(c=> c.MyPostsComponent),
       },
       {
         path:'details/:postId',

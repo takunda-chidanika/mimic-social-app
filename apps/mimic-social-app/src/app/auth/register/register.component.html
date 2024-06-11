@@ -1,20 +1,144 @@
-<p>Login</p>
-<form [formGroup]="registerForm" (ngSubmit)="handleRegister()">
-  <label>
-    Username:
-    <input type="text" formControlName="username">
-  </label>
-  <label>
-    Email:
-    <input type="email" formControlName="email">
-  </label>
-  <label>
-    Password:
-    <input type="password" formControlName="password">
-  </label>
-  <button type="submit">Submit</button>
-</form>
-<div>
-  <h4>{{user?.username}}</h4>
-  <h4>{{user?.email}}</h4>
+<!--<p>Login</p>-->
+<!--<form [formGroup]="registerForm" (ngSubmit)="handleRegister()">-->
+<!--  <label>-->
+<!--    Username:-->
+<!--    <input type="text" formControlName="username">-->
+<!--  </label>-->
+<!--  <label>-->
+<!--    Email:-->
+<!--    <input type="email" formControlName="email">-->
+<!--  </label>-->
+<!--  <label>-->
+<!--    Password:-->
+<!--    <input type="password" formControlName="password">-->
+<!--  </label>-->
+<!--  <button type="submit">Submit</button>-->
+<!--</form>-->
+<!--<div>-->
+<!--  <h4>{{user?.username}}</h4>-->
+<!--  <h4>{{user?.email}}</h4>-->
+<!--</div>-->
+<div class="sm:flex">
+
+  <div class="relative lg:w-[580px] md:w-96 w-full p-10 min-h-screen bg-white shadow-xl flex items-center pt-10 dark:bg-slate-900 z-10">
+
+    <div class="w-full lg:max-w-sm mx-auto space-y-10" uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true">
+
+      <!-- logo image-->
+      <a href="#"> <img src="../../../assets/images/logo.png" class="w-28 absolute top-10 left-10 dark:hidden" alt=""></a>
+      <a href="#"> <img src="../../../assets/images/logo-light.png" class="w-28 absolute top-10 left-10 hidden dark:!block" alt=""></a>
+
+      <!-- logo icon optional -->
+      <div class="hidden">
+        <img class="w-12" src="../../../assets/images/logo-icon.png" alt="Socialite html template">
+      </div>
+
+      <!-- title -->
+      <div>
+        <h2 class="text-2xl font-semibold mb-1.5"> Sign up to get started </h2>
+        <p class="text-sm text-gray-700 font-normal">If you already have an account, <a [routerLink]="'/auth/login'" class="text-blue-700">Login here!</a></p>
+      </div>
+
+
+      <!-- form -->
+      <form [formGroup]="registerForm" (ngSubmit)="handleRegister()" class="space-y-7 text-sm text-black font-medium dark:text-white"  uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true">
+
+        <div class="grid grid-cols-2 gap-4 gap-y-7">
+
+          <!-- username -->
+          <div class="col-span-2">
+            <label for="username" class="">Username</label>
+            <div class="mt-2.5">
+              <input id="username" formControlName="username" name="username" type="text" placeholder="Username" required="required" class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
+            </div>
+          </div>
+          <!-- email -->
+          <div class="col-span-2">
+            <label for="email" class="">Email address</label>
+            <div class="mt-2.5">
+              <input id="email" formControlName="email" name="email" type="email" placeholder="Email" required="required" class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
+            </div>
+          </div>
+
+          <!-- password -->
+          <div>
+            <label for="password" class="">Password</label>
+            <div class="mt-2.5">
+              <input id="password" formControlName="password" name="password" type="password" placeholder="*********"  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div>
+            <label for="cpassword" class="">Confirm Password</label>
+            <div class="mt-2.5">
+              <input id="cpassword" name="cpassword" type="password" placeholder="*********"  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5">
+            </div>
+          </div>
+
+          <div class="col-span-2">
+
+            <label class="inline-flex items-center" id="rememberme">
+              <input type="checkbox" id="accept-terms" class="!rounded-md accent-red-800" />
+              <span class="ml-2">you agree to our <a href="#" class="text-blue-700 hover:underline">terms of use </a> </span>
+            </label>
+
+          </div>
+
+
+          <!-- submit button -->
+          <div class="col-span-2">
+            <button type="submit" class="button bg-primary text-white w-full">Get Started</button>
+          </div>
+
+        </div>
+      </form>
+
+
+    </div>
+
+  </div>
+
+  <!-- image slider -->
+  <div class="flex-1 relative bg-primary max-md:hidden">
+
+
+    <div class="relative w-full h-full" tabindex="-1" uk-slideshow="animation: slide; autoplay: true">
+
+      <ul class="uk-slideshow-items w-full h-full">
+        <li class="w-full">
+          <img src="assets/images/post/img-3.jpg"  alt="" class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+          <div class="absolute bottom-0 w-full uk-tr ansition-slide-bottom-small z-10">
+            <div class="max-w-xl w-full mx-auto pb-32 px-5 z-30 relative"  uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true" >
+              <img class="w-12" src="assets/images/logo-icon.png" alt="Socialite html template">
+              <h4 class="!text-white text-2xl font-semibold mt-7"  uk-slideshow-parallax="y: 600,0,0"> Welcome to Postify! </h4>
+              <p class="!text-white text-lg mt-7 leading-8"  uk-slideshow-parallax="y: 800,0,0;"> Register now to share and explore amazing content!</p>
+            </div>
+          </div>
+          <div class="w-full h-96 bg-gradient-to-t from-black absolute bottom-0 left-0"></div>
+        </li>
+        <li class="w-full">
+          <img src="assets/images/post/img-2.jpg"  alt="" class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+          <div class="absolute bottom-0 w-full uk-tr ansition-slide-bottom-small z-10">
+            <div class="max-w-xl w-full mx-auto pb-32 px-5 z-30 relative"  uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true" >
+              <img class="w-12" src="assets/images/logo-icon.png" alt="Socialite html template">
+              <h4 class="!text-white text-2xl font-semibold mt-7"  uk-slideshow-parallax="y: 800,0,0">  Welcome to Postify!  </h4>
+              <p class="!text-white text-lg mt-7 leading-8"  uk-slideshow-parallax="y: 800,0,0;"> Dive into a world of content wonders after registering</p>
+            </div>
+          </div>
+          <div class="w-full h-96 bg-gradient-to-t from-black absolute bottom-0 left-0"></div>
+        </li>
+      </ul>
+
+      <!-- slide nav -->
+      <div class="flex justify-center">
+        <ul class="inline-flex flex-wrap justify-center  absolute bottom-8 gap-1.5 uk-dotnav uk-slideshow-nav"> </ul>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
 </div>

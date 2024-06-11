@@ -20,6 +20,11 @@
           {
             "glob": "**/*",
             "input": "apps/mimic-social-app/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/mimic-social-app/src/assets",
+            "output": "./assets/"
           }
         ],
         "styles": ["apps/mimic-social-app/src/styles.scss"],

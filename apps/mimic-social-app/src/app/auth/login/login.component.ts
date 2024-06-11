@@ -1,13 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { AuthService, LoginRequest, Token } from '@mimic-social-org/shared';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -15,6 +17,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 export class LoginComponent {
   protected authService = inject(AuthService);
   protected loginRequest: LoginRequest = { username: '', password: '' };
+  protected router= inject(Router);
   protected token: Token | undefined;
 
   protected loginForm = new FormGroup({
@@ -30,6 +33,7 @@ export class LoginComponent {
       token => {
         this.token = token;
         localStorage.setItem('access_token', token.access_token);
+        this.router.navigate(['/posts'])
       },
       error => {
         console.log(error);

@@ -1,0 +1,357 @@
+<main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+
+  <!-- timeline -->
+  <div class="lg:flex 2xl:gap-16 gap-12 max-w-[1065px] mx-auto"  id="js-oversized">
+
+    <div class="max-w-[680px] mx-auto">
+
+      <!-- feed story -->
+      <div class="md:max-w-[580px] mx-auto flex-1 xl:space-y-6 space-y-3">
+
+        @defer (){
+          @for (post of posts; track $index){
+            <!-- post text-->
+            <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
+
+              <!-- post heading -->
+              <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
+                <a href="timeline.html"> <img src="../../../assets/images/avatars/avatar-5.jpg" alt="" class="w-9 h-9 rounded-full"> </a>
+                <div class="flex-1">
+                  <a href="timeline.html"> <h4 class="text-black dark:text-white"> {{post.owner.username}} </h4> </a>
+                  <div class="text-xs text-gray-500 dark:text-white/80"> {{ calculateTimeFromGivenDate(post.created_at)}} </div>
+                </div>
+
+                <div class="-mr-1">
+                  <button type="button" class="button__ico w-8 h-8" aria-haspopup="true" aria-expanded="false"> <ion-icon class="text-xl md hydrated" name="ellipsis-horizontal" role="img" aria-label="ellipsis horizontal"></ion-icon> </button>
+                  <div class="w-[245px] uk-dropdown" uk-dropdown="pos: bottom-right; animation: uk-animation-scale-up uk-transform-origin-top-right; animate-out: true; mode: click">
+                    <nav>
+                      <a href="#"> <ion-icon class="text-xl shrink-0 md hydrated" name="bookmark-outline" role="img" aria-label="bookmark outline"></ion-icon>  Add to favorites </a>
+                      <a href="#"> <ion-icon class="text-xl shrink-0 md hydrated" name="notifications-off-outline" role="img" aria-label="notifications off outline"></ion-icon> Mute Notification </a>
+                      <a href="#"> <ion-icon class="text-xl shrink-0 md hydrated" name="flag-outline" role="img" aria-label="flag outline"></ion-icon>  Report this post </a>
+                      <a href="#"> <ion-icon class="text-xl shrink-0 md hydrated" name="share-outline" role="img" aria-label="share outline"></ion-icon>  Share your profile </a>
+                      <hr>
+                      <a href="#" class="text-red-400 hover:!bg-red-50 dark:hover:!bg-red-500/50"> <ion-icon class="text-xl shrink-0 md hydrated" name="stop-circle-outline" role="img" aria-label="stop circle outline"></ion-icon>  Unfollow </a>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sm:px-4 p-2.5 pt-0">
+                <p class="font-normal"> {{post.content}} </p>
+              </div>
+
+              <!-- post icons -->
+              <div class="sm:p-4 p-2.5 flex items-center gap-4 text-xs font-semibold">
+                <div>
+                  <div class="flex items-center gap-2.5">
+                    <app-post-up-vote [postId]="post.id"></app-post-up-vote>
+                    <app-post-down-vote [postId]="post.id"></app-post-down-vote>
+                    <a href="#">{{post.votes}}</a>
+                  </div>
+                </div>
+                <button type="button" class="button-icon ml-auto"> <ion-icon class="text-xl" name="paper-plane-outline"></ion-icon> </button>
+                <button type="button" class="button-icon"> <ion-icon class="text-xl" name="share-outline"></ion-icon> </button>
+              </div>
+
+              <!-- comments -->
+              <div class="sm:p-4 p-2.5 border-t border-gray-100 font-normal space-y-3 relative dark:border-slate-700/40 animate-pulse">
+
+                <div class="flex gap-3">
+
+                  <div class="w-16 h-5 rounded-md bg-slate-300/20"></div>
+
+                  <div class="w-14 h-5 rounded-md bg-slate-300/20"></div>
+
+                  <div class="w-6 h-6 rounded-full bg-slate-300/20 ml-auto"></div>
+                  <div class="w-6 h-6 rounded-full bg-slate-300/20  "></div>
+                </div>
+
+              </div>
+
+              <!-- add comment -->
+              <div class="sm:px-4 sm:py-3 p-2.5 border-t border-gray-100 flex items-center gap-1 dark:border-slate-700/40">
+
+                <img src="../../../assets/images/avatars/avatar-7.jpg" alt="" class="w-6 h-6 rounded-full">
+
+                <div class="flex-1 relative overflow-hidden h-10">
+                  <textarea placeholder="Add Comment...." rows="1" class="w-full resize-none !bg-transparent px-4 py-2 focus:!border-transparent focus:!ring-transparent" aria-haspopup="true" aria-expanded="false"></textarea>
+
+                  <div class="!top-2 pr-2 uk-drop" uk-drop="pos: bottom-right; mode: click">
+                    <div class="flex items-center gap-2" uk-scrollspy="target: > svg; cls: uk-animation-slide-right-small; delay: 100 ;repeat: true">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-sky-600" style="opacity: 0;">
+                        <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd"></path>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 fill-pink-600" style="opacity: 0;">
+                        <path d="M3.25 4A2.25 2.25 0 001 6.25v7.5A2.25 2.25 0 003.25 16h7.5A2.25 2.25 0 0013 13.75v-7.5A2.25 2.25 0 0010.75 4h-7.5zM19 4.75a.75.75 0 00-1.28-.53l-3 3a.75.75 0 00-.22.53v4.5c0 .199.079.39.22.53l3 3a.75.75 0 001.28-.53V4.75z"></path>
+                      </svg>
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+                <button type="submit" class="text-sm rounded-full py-1.5 px-3.5 bg-secondery"> post</button>
+              </div>
+
+            </div>
+
+          }
+        } @placeholder (minimum 2.5s){
+<!--          Placeholder-->
+          <div class="rounded-xl shadow-sm p-4 space-y-4 bg-slate-200/40 animate-pulse border1 dark:bg-dark2">
+
+            <div class="flex gap-3">
+              <div class="w-9 h-9 rounded-full bg-slate-300/20"></div>
+              <div class="flex-1 space-y-3">
+                <div class="w-40 h-5 rounded-md bg-slate-300/20"></div>
+                <div class="w-24 h-4 rounded-md bg-slate-300/20"></div>
+              </div>
+              <div class="w-6 h-6 rounded-full bg-slate-300/20"></div>
+            </div>
+
+            <div class="w-full h-52 rounded-lg bg-slate-300/10 my-3" ><p [style.color]="'rgb(203, 213, 225)'" [style.opacity]="0.0">Photography is the art of capturing light with a camera. It can be used to create images that tell stories, express emotions, or document reality. it can be fun, challenging, or rewarding. It can also be a hobby, a profession, or a passion. 📷</p> </div>
+
+            <div class="flex gap-3">
+
+              <div class="w-16 h-5 rounded-md bg-slate-300/20"></div>
+
+              <div class="w-14 h-5 rounded-md bg-slate-300/20"></div>
+
+              <div class="w-6 h-6 rounded-full bg-slate-300/20 ml-auto"></div>
+              <div class="w-6 h-6 rounded-full bg-slate-300/20  "></div>
+            </div>
+
+          </div>
+          <div class="rounded-xl shadow-sm p-4 space-y-4 bg-slate-200/40 animate-pulse border1 dark:bg-dark2">
+
+            <div class="flex gap-3">
+              <div class="w-9 h-9 rounded-full bg-slate-300/20"></div>
+              <div class="flex-1 space-y-3">
+                <div class="w-40 h-5 rounded-md bg-slate-300/20"></div>
+                <div class="w-24 h-4 rounded-md bg-slate-300/20"></div>
+              </div>
+              <div class="w-6 h-6 rounded-full bg-slate-300/20"></div>
+            </div>
+
+            <div class="w-full h-52 rounded-lg bg-slate-300/10 my-3" ><p [style.color]="'rgb(203, 213, 225)'" [style.opacity]="0.0">Photography is the art of capturing light with a camera. It can be used to create images that tell stories, express emotions, or document reality. it can be fun, challenging, or rewarding. It can also be a hobby, a profession, or a passion. 📷</p> </div>
+
+            <div class="flex gap-3">
+
+              <div class="w-16 h-5 rounded-md bg-slate-300/20"></div>
+
+              <div class="w-14 h-5 rounded-md bg-slate-300/20"></div>
+
+              <div class="w-6 h-6 rounded-full bg-slate-300/20 ml-auto"></div>
+              <div class="w-6 h-6 rounded-full bg-slate-300/20  "></div>
+            </div>
+
+          </div>
+        }
+      </div>
+
+    </div>
+
+<!--     sidebar-->
+    <div class="flex-1">
+
+      <div class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
+           uk-sticky="media: 1024; end: #js-oversized; offset: 80">
+
+        <div class="box p-5 px-6">
+
+          <div class="flex items-baseline justify-between text-black dark:text-white">
+            <h3 class="font-bold text-base"> People you may know </h3>
+            <a href="#" class="text-sm text-blue-500">See all</a>
+          </div>
+
+          <div class="side-list">
+
+            <div class="side-list-item">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-2.jpg" alt="" class="side-list-image rounded-full">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="side-list-title">  John Michael </h4></a>
+                <div class="side-list-info"> 125k Following </div>
+              </div>
+              <button class="button bg-primary-soft text-primary dark:text-white">follow</button>
+            </div>
+
+            <div class="side-list-item">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-3.jpg" alt="" class="side-list-image rounded-full">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="side-list-title"> Monroe Parker </h4></a>
+                <div class="side-list-info"> 320k Following </div>
+              </div>
+              <button class="button bg-primary-soft text-primary dark:text-white">follow</button>
+            </div>
+
+            <div class="side-list-item">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-5.jpg" alt="" class="side-list-image rounded-full">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="side-list-title"> James Lewis</h4></a>
+                <div class="side-list-info"> 125k Following </div>
+              </div>
+              <button class="button bg-primary-soft text-primary dark:text-white">follow</button>
+            </div>
+
+            <div class="side-list-item">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-6.jpg" alt="" class="side-list-image rounded-full">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="side-list-title">  Alexa stella </h4></a>
+                <div class="side-list-info"> 192k Following </div>
+              </div>
+              <button class="button bg-primary-soft text-primary dark:text-white">follow</button>
+            </div>
+
+            <div class="side-list-item">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-2.jpg" alt="" class="side-list-image rounded-full">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="side-list-title"> John Michael </h4></a>
+                <div class="side-list-info"> 320k Following </div>
+              </div>
+              <button class="button bg-primary-soft text-primary dark:text-white">follow</button>
+            </div>
+
+            <button class="bg-secondery button w-full mt-2 hidden">See all</button>
+
+          </div>
+
+        </div>
+
+        <!-- people you might know -->
+        <div class="box p-5 px-6 border1 dark:bg-dark2 hidden">
+
+          <div class="flex justify-between text-black dark:text-white">
+            <h3 class="font-bold text-base"> Peaple You might know </h3>
+            <button type="button"> <ion-icon name="sync-outline" class="text-xl"></ion-icon> </button>
+          </div>
+
+          <div class="space-y-4 capitalize text-xs font-normal mt-5 mb-2 text-gray-500 dark:text-white/80">
+
+            <div class="flex items-center gap-3">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-7.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="font-semibold text-sm text-black dark:text-white">  Johnson smith</h4></a>
+                <div class="mt-0.5"> Suggested For You </div>
+              </div>
+              <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-5.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="font-semibold text-sm text-black dark:text-white"> James Lewis</h4></a>
+                <div class="mt-0.5"> Followed by Johnson </div>
+              </div>
+              <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-2.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="font-semibold text-sm text-black dark:text-white"> John Michael</h4></a>
+                <div class="mt-0.5"> Followed by Monroe  </div>
+              </div>
+              <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-3.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="font-semibold text-sm text-black dark:text-white">  Monroe Parker</h4></a>
+                <div class="mt-0.5"> Suggested For You </div>
+              </div>
+              <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="timeline.html">
+                <img src="assets/images/avatars/avatar-4.jpg" alt="" class="bg-gray-200 rounded-full w-10 h-10">
+              </a>
+              <div class="flex-1">
+                <a href="timeline.html"><h4 class="font-semibold text-sm text-black dark:text-white">  Martin Gray</h4></a>
+                <div class="mt-0.5"> Suggested For You </div>
+              </div>
+              <button type="button" class="text-sm rounded-full py-1.5 px-4 font-semibold bg-secondery"> Follow </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="box p-5 px-6 border1 dark:bg-dark2">
+
+          <div class="flex justify-between text-black dark:text-white">
+            <h3 class="font-bold text-base"> Trends for you </h3>
+            <button type="button"> <ion-icon name="sync-outline" class="text-xl"></ion-icon> </button>
+          </div>
+
+          <div class="space-y-3.5 capitalize text-xs font-normal mt-5 mb-2 text-gray-600 dark:text-white/80">
+            <a href="#">
+              <div class="flex items-center gap-3 p">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 -mt-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5" />
+                </svg>
+                <div class="flex-1">
+                  <h4 class="font-semibold text-black dark:text-white text-sm">  artificial intelligence </h4>
+                  <div class="mt-0.5"> 1,245,62 post </div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="block">
+              <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 -mt-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5" />
+                </svg>
+                <div class="flex-1">
+                  <h4 class="font-semibold text-black dark:text-white text-sm">  Web developers</h4>
+                  <div class="mt-0.5"> 1,624 post </div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="block">
+              <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 -mt-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5" />
+                </svg>
+                <div class="flex-1">
+                  <h4 class="font-semibold text-black dark:text-white text-sm">  Ui Designers</h4>
+                  <div class="mt-0.5"> 820 post </div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="block">
+              <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 -mt-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5" />
+                </svg>
+                <div class="flex-1">
+                  <h4 class="font-semibold text-black dark:text-white text-sm"> affiliate marketing </h4>
+                  <div class="mt-0.5"> 480 post </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</main>

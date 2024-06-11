@@ -2,12 +2,14 @@ import { Component, inject } from '@angular/core';
 import { Post, PostsService } from '@mimic-social-org/shared';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PostCreate } from '@mimic-social-org/shared';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-post-create',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IonicModule
   ],
   templateUrl: './post-create.component.html',
   styleUrl: './post-create.component.css'

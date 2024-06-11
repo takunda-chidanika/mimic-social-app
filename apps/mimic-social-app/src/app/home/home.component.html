@@ -1,1 +1,128 @@
-<p>home works!</p>
+<!-- header -->
+<header class="lg:py-4 lg:px-6 py-3 px-4 border-b border-slate-200/60 dark:border-slate-600/40 bg-white/95 backdrop-blur-xl z-40 dark:bg-slate-900/80 uk-animation-slide-top-small" uk-sticky>
+  <div class="max-w-5xl mx-auto">
+    <div class="flex justify-between items-center">
+
+      <div class="flex gap-2 items-center z-20 relative">
+        <button type="button" class="p-2.5 text-lg max-md:flex hidden group z" uk-toggle="target: #header-nav ; cls:max-md:hidden">
+          <ion-icon name="menu" class="group-aria-expanded:inline hidden"></ion-icon>
+          <ion-icon name="close" class="group-aria-expanded:hidden"></ion-icon>
+        </button>
+        <a href="index.html"><img ngSrc="../../assets/images/logo.png" alt="" class="h-7" height="86" width="325"></a>
+      </div>
+      <div class="flex items-center z-20 relative">
+
+        <div class="flex items-center gap-4 relative pl-6 text-slate-600">
+
+          <a class="bg-blue-500 dark:bg-pink-700/30 text-white shadow px-4 h-9 text-sm rounded-md flex items-center gap-2 font-semibold" [routerLink]="['/auth/login']" >
+            <ion-icon name="login-outline" class="text-xl"></ion-icon> Login
+          </a>
+
+          <div class="w-[1px] bg-slate-200 h-6 absolute left-0 hidden"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<main class="md:mt-10 -mt-8 pt-8">
+  <div class="relative md:mb-24">
+    <div class="max-w-5xl mx-auto space-y-32 max-md:p-8">
+      <!-- hero -->
+      <section id="home">
+
+        <div class="flex flex-col justify-center mt-6 text-center gap-6">
+          <div>
+            <img src="../../assets/images/logo-icon-2.png" alt="" class="max-md:w-24  mx-auto">
+          </div>
+          <p class="max-w-2xl mx-auto text-gray-500 sm:text-lg text-sm leading-relaxed dark:text-white">
+            Welcome to Postify! Discover, share, and connect with amazing content!
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" class="absolute -bottom-44 w-full max-lg:hidden rotate-3">
+      <path fill="#f1f5f9" d="M 0 0 c 0 0 200 50 500 50 s 500 -50 500 -50 v 101 h -1000 v -100 z" class="fill-current text-slate-50 dark:text-slate-800/60"></path>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" class="absolute -bottom-40 w-full max-lg:hidden -rotate-6">
+      <path fill="#f1f5f9" d="M 0 0 c 0 0 200 50 500 50 s 500 -50 500 -50 v 101 h -1000 v -100 z" class="fill-current text-slate-50/80 dark:text-slate-800/40"></path>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" class="absolute -bottom-44 w-full max-lg:hidden">
+      <path fill="#f1f5f9" d="M 0 0 c 0 0 200 50 500 50 s 500 -50 500 -50 v 101 h -1000 v -100 z" class="fill-current text-slate-100 dark:text-slate-800"></path>
+    </svg>
+
+  </div>
+
+
+  <!-- demos -->
+  <section class="bg-slate-100 md:py-20 py-8 md:my-20 my-8 relative dark:bg-dark2">
+
+    <div class="max-w-5xl mx-auto max-lg:p-8">
+
+      <div class="text-center md:space-y-3" id="demos">
+        <div class="lg:text-3xl text-lg md:font-bold font-semibold text-black dark:text-white"> Top 3 Posts </div>
+        <p class="max-w-3xl mx-auto text-gray-500 md:text-base text-sm leading-relaxed dark:text-white/80">
+          Register or login to discover our top posts and more!
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6 lg:mt-20 mt-10 text-center font-normal capitalize"   uk-scrollspy="target: > a ; cls: uk-animation-slide-bottom-small ; delay: 160">
+
+
+        <a href="feed.html" target="_blank">
+          <div class="group">
+            <div class="md:rounded-lg rounded-md shadow-md overflow-hidden duration-300 group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-lg">
+              <img src="../../assets/images/demos/home.png" alt="" class="w-full h-full object-cover inset-0">
+            </div>
+            <p class="py-4 group-hover:text-black"> Home </p>
+          </div>
+        </a>
+        <a href="messages.html" target="_blank">
+          <div class="group">
+            <div class="md:rounded-lg rounded-md shadow-md overflow-hidden duration-300 group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-lg">
+              <img src="../../assets/images/demos/messages.png" alt="" class="w-full h-full object-cover inset-0">
+            </div>
+            <p class="py-4 group-hover:text-black"> messages </p>
+          </div>
+        </a>
+        <a href="video.html" target="_blank">
+          <div class="group">
+            <div class="md:rounded-lg rounded-md shadow-md overflow-hidden duration-300 group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-lg">
+              <img src="../../assets/images/demos/videos.png" alt="" class="w-full h-full object-cover inset-0">
+            </div>
+            <p class="py-4 group-hover:text-black"> Videos </p>
+          </div>
+        </a>
+      </div>
+      <div class="md:flex justify-center items-center gap-4 mt-8 font-semibold text-sm hidden">
+        <a  href="/auth/login" class="flex items-center gap-2 bg-slate-100 rounded-lg px-5 py-3 text-black dark:bg-slate-900 dark:text-white">
+          <ion-icon name="eye-outline" class="hidden"></ion-icon>
+          Login
+        </a>
+        <a class="flex items-center gap-3 rounded-lg px-5 py-2.5 bg-black text-white shadow dark:bg-white/90 dark:text-black" href="/auth/register">
+          Register
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="max-w-5xl mx-auto mb-6 mt-32 pt-6 border-t dark:border-slate-800">
+
+    <div class="flex justify-center text-sm dark:to-white">
+
+      Made with ❤️ by <a class="ml-2 hover:underline hover:text-blue-500" href="https://foxthemes.net/">Foxthemes</a>
+
+    </div>
+
+  </div>
+</footer>
