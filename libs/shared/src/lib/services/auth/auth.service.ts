@@ -6,6 +6,12 @@ import { BASE_URL } from '../index';
 import { LoginRequest } from '../../models/auth/login-request';
 import { RegisterRequest } from '../../models/auth/register-request';
 import { User } from '../../models/users/user';
+import { jwtDecode } from 'jwt-decode';
+
+export interface DecodedToken {
+  sub:string,
+  exp:string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +36,14 @@ export class AuthService {
   // Register
   register(data: RegisterRequest): Observable<User> {
     return this.http.post<User>(this.AUTH_BASE_URL + '/register', data);
+  }
+
+  decodeToken(token: string): DecodedToken {
+    try {
+      return jwtDecode<DecodedToken>(token);
+    } catch (error) {
+      console.error('Invalid token:', error);
+      return {sub:"",exp:'"'};
+    }
   }
 }

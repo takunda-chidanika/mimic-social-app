@@ -1,7 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { AuthService, LoginRequest, Token } from '@mimic-social-org/shared';
+import { Component, inject, OnInit } from '@angular/core';
+import { LoginRequest, Token } from '@mimic-social-org/shared';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { login } from '../../../store/auth/auth.actions';
+import { map, Observable } from 'rxjs';
+import { selectToken$ } from '../../../store/auth/auth.selector';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +18,9 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
-  protected authService = inject(AuthService);
-  protected loginRequest: LoginRequest = { username: '', password: '' };
+export class LoginComponent{
   protected router= inject(Router);
-  protected token: Token | undefined;
+  private store = inject(Store);
 
   protected loginForm = new FormGroup({
     username: new FormControl(''),
@@ -26,19 +28,14 @@ export class LoginComponent {
   });
 
   handleLogin() {
-    this.loginRequest.username = this.loginForm.value.username ?? '';
-    this.loginRequest.password = this.loginForm.value.password ?? '';
+    const loginRequest: LoginRequest = {
+      username: this.loginForm.value.username ?? '',
+      password: this.loginForm.value.password ?? ''
+    };
 
-    this.authService.login(this.loginRequest).subscribe(
-      token => {
-        this.token = token;
-        localStorage.setItem('access_token', token.access_token);
-        this.router.navigate(['/posts'])
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.store.dispatch(login({request:loginRequest}));
   }
+
+
 
 }

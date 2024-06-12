@@ -1,5 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { PostsService, PostWithVotes } from '@mimic-social-org/shared';
+import { Store } from '@ngrx/store';
+import { downVoteAPost } from '../../../store/posts/posts.actions';
 
 @Component({
   selector: 'app-post-down-vote',
@@ -11,17 +13,10 @@ import { PostsService, PostWithVotes } from '@mimic-social-org/shared';
 export class PostDownVoteComponent {
   @Input() postId = 0;
   protected postService = inject(PostsService);
-  protected post:PostWithVotes | undefined;
-
+  private store = inject(Store);
 
   downVoteAPost(){
-    this.postService.downVoteAPost(this.postId).subscribe(
-      post => {
-        this.post = post;
-      }, error => {
-        console.log(error);
-      }
-    );
+    this.store.dispatch(downVoteAPost({postId: this.postId}))
   }
 
 }

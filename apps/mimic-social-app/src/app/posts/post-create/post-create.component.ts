@@ -3,6 +3,8 @@ import { Post, PostsService } from '@mimic-social-org/shared';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PostCreate } from '@mimic-social-org/shared';
 import { IonicModule } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { createAPost } from '../../../store/posts/posts.actions';
 
 @Component({
   selector: 'app-post-create',
@@ -15,7 +17,7 @@ import { IonicModule } from '@ionic/angular';
   styleUrl: './post-create.component.css'
 })
 export class PostCreateComponent {
-  protected postService = inject(PostsService);
+  private store = inject(Store);
   protected postCreateRequest: PostCreate = { title: '', content: '', published: false };
   protected post: Post | undefined;
 
@@ -30,13 +32,6 @@ export class PostCreateComponent {
     this.postCreateRequest.content = this.postCreateForm.value.content ?? '';
     this.postCreateRequest.published = Boolean(this.postCreateForm.value.published ?? 'true');
 
-    this.postService.createANewPost(this.postCreateRequest).subscribe(
-      post => {
-        this.post = post;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.store.dispatch(createAPost({request: this.postCreateRequest}))
   }
 }

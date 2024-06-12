@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { NavsComponent } from '../../components/navs/navs.component';
 
 @Component({
   selector: 'app-posts-layout',
@@ -9,7 +10,8 @@ import { IonicModule } from '@ionic/angular';
     RouterOutlet,
     IonicModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    NavsComponent
   ],
   templateUrl: './post-layout.component.html',
   styleUrl: './post-layout.component.css'

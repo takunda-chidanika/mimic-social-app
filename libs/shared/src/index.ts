@@ -13,3 +13,4 @@ export * from "./lib/models/posts/post-with-votes";
 export * from "./lib/models/posts/post-create";
 export * from "./lib/models/posts/post-update";
 export * from "./lib/models/posts/post";
+export * from "./lib/models/auth/logged-user"

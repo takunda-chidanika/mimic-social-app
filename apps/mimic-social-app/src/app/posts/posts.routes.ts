@@ -21,10 +21,6 @@ export const postsRoutes: Routes = [
         loadComponent:()=> import("./post-delete/post-delete.component").then(c=> c.PostDeleteComponent),
       },
       {
-        path:'mine',
-        loadComponent:()=> import("./my-posts/my-posts.component").then(c=> c.MyPostsComponent),
-      },
-      {
         path:'details/:postId',
         loadComponent:()=> import("./post-details/post-details.component").then(c=> c.PostDetailsComponent),
       },

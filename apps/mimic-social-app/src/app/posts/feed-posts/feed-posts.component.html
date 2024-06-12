@@ -9,7 +9,7 @@
       <div class="md:max-w-[580px] mx-auto flex-1 xl:space-y-6 space-y-3">
 
         @defer (){
-          @for (post of posts; track $index){
+          @for (post of posts | async; track $index){
             <!-- post text-->
             <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2">
 

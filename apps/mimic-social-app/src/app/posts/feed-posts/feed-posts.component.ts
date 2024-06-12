@@ -4,6 +4,11 @@ import { PostsService, PostWithVotes } from '@mimic-social-org/shared';
 import { style } from '@angular/animations';
 import { PostUpVoteComponent } from '../post-up-vote/post-up-vote.component';
 import { PostDownVoteComponent } from '../post-down-vote/post-down-vote.component';
+import { Store } from '@ngrx/store';
+import { getAllPosts } from '../../../store/posts/posts.actions';
+import { selectAllPosts } from '../../../store/posts/posts.selector';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-feed-posts',
@@ -11,28 +16,18 @@ import { PostDownVoteComponent } from '../post-down-vote/post-down-vote.componen
   imports: [
     IonicModule,
     PostUpVoteComponent,
-    PostDownVoteComponent
+    PostDownVoteComponent,
+    AsyncPipe
   ],
   templateUrl: './feed-posts.component.html',
   styleUrl: './feed-posts.component.css'
 })
 export class FeedPostsComponent implements OnInit {
-  protected postService = inject(PostsService)
-  protected posts:PostWithVotes[]=[];
+  protected store = inject(Store);
+  protected posts:Observable<PostWithVotes[]>= this.store.select(selectAllPosts);
 
   ngOnInit(): void {
-    this.getAllUsers()
-  }
-
-  getAllUsers(){
-    return this.postService.getAllPosts().subscribe(
-      posts=>{
-        this.posts = posts
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    this.store.dispatch(getAllPosts());
   }
 
   // Method to calculate time from given date

@@ -1,5 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
-import { PostsService, PostWithVotes } from '@mimic-social-org/shared';
+import { Store } from '@ngrx/store';
+import { upVoteAPost } from '../../../store/posts/posts.actions';
 
 @Component({
   selector: 'app-post-up-vote',
@@ -10,17 +11,9 @@ import { PostsService, PostWithVotes } from '@mimic-social-org/shared';
 })
 export class PostUpVoteComponent {
   @Input() postId = 0;
-  protected postService = inject(PostsService);
-  protected post:PostWithVotes | undefined;
+  private store = inject(Store);
 
-
-  upVoteAPost(){
-    this.postService.upVoteAPost(this.postId).subscribe(
-      post => {
-        this.post = post;
-      }, error => {
-        console.log(error);
-      }
-    );
+  upVoteAPost() {
+    this.store.dispatch(upVoteAPost({ postId: this.postId }));
   }
 }

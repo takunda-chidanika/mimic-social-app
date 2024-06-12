@@ -1,10 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PostsService, PostWithVotes } from '@mimic-social-org/shared';
+import { PostWithVotes } from '@mimic-social-org/shared';
 import { PostDownVoteComponent } from '../post-down-vote/post-down-vote.component';
 import { PostUpVoteComponent } from '../post-up-vote/post-up-vote.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { selectAllPosts } from '../../../store/posts/posts.selector';
+import { Store } from '@ngrx/store';
+import { getAllPosts } from '../../../store/posts/posts.actions';
 
 @Component({
   selector: 'app-posts',
@@ -14,28 +18,18 @@ import { DatePipe } from '@angular/common';
     PostUpVoteComponent,
     IonicModule,
     RouterLink,
-    DatePipe
+    DatePipe,
+    AsyncPipe
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
 export class PostsComponent implements OnInit{
-protected postService = inject(PostsService)
-  protected posts:PostWithVotes[]=[];
+  private store = inject(Store);
+  protected posts: Observable<PostWithVotes[]> = this.store.select(selectAllPosts);
 
   ngOnInit(): void {
-    this.getAllUsers()
-  }
-
-  getAllUsers(){
-    return this.postService.getAllPosts().subscribe(
-      posts=>{
-        this.posts = posts
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    this.store.dispatch(getAllPosts());
   }
 
 }
