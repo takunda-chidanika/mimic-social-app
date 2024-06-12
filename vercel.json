@@ -1,0 +1,5 @@
+{
+  "build": {
+    "command": "npm install --legacy-peer-deps && npx nx build mimic-social-app"
+  }
+}
